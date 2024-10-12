@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { account } from "@/app/appwrite";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,6 +29,7 @@ const Navbar = () => {
     try {
       await account.deleteSession("current");
       setUser(null);
+      router.push("/");
     } catch (err) {
       console.error(err.message);
     }

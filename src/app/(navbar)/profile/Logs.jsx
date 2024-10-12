@@ -14,7 +14,7 @@ export const Logs = ({ log }) => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-900">
-          {log?.map((logs, index) => (
+          {log?.slice(0, 5).map((logs, index) => (
             <tr key={index}>
               <td className="px-3 py-3 text-sm text-gray-700 capitalize">
                 {logs.clientName} - {logs.clientType} - {logs.clientVersion}

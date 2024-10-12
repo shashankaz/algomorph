@@ -85,53 +85,50 @@ const Playground = ({ params }) => {
       <h2 className="text-4xl font-semibold mb-4 capitalize">
         {type.split("-").join(" ")}
       </h2>
-      <div className="flex flex-col md:flex-row gap-4 pb-12 h-full">
-        <div className="w-full md:w-1/2 h-full">
-          <div className="flex gap-2 items-center mb-4">
-            <label className="font-medium">Select Language:</label>
-            <select
-              value={selectedLanguage}
-              onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="p-2 border rounded"
-            >
-              {languages.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <Editor
-            theme="vs-dark"
-            height="100%"
-            width="100%"
-            language={selectedLanguage.toLowerCase()}
-            value={getCodeForLanguage(selectedLanguage.toLowerCase())}
-            options={{
-              readOnly: true,
-            }}
-          />
-        </div>
-
-        <div className="w-full md:w-1/2 h-full">
+      <div className="flex flex-col pb-12 h-full">
+        <div className="flex gap-2 items-center mb-4">
+          <label className="font-medium">Select Language:</label>
+          <select
+            value={selectedLanguage}
+            onChange={(e) => setSelectedLanguage(e.target.value)}
+            className="p-2 border border-gray-400 rounded"
+          >
+            {languages.map((lang) => (
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
+            ))}
+          </select>
           <button
             onClick={handleExecute}
             disabled={isRunning}
-            className={`mb-4 p-2 bg-gray-800 text-white rounded-md w-full ${
-              isRunning ? "opacity-50" : ""
-            }`}
+            className="bg-white w-28 px-3 py-2 rounded border border-gray-400 flex items-center justify-center"
           >
-            {isRunning ? "Running..." : "Run Code"}
+            {isRunning ? <div>Running...</div> : <div>Run Code</div>}
           </button>
-
-          <pre
-            className={`border border-black ${
-              error && "border-red-500 text-red-500"
-            } p-2 h-full overflow-auto`}
-          >
-            {error ? error : output}
-          </pre>
+        </div>
+        <div className="flex flex-col md:flex-row gap-4 w-full h-full">
+          <div className="w-full md:w-1/2 h-full">
+            <Editor
+              theme="vs-dark"
+              height="100%"
+              width="100%"
+              language={selectedLanguage.toLowerCase()}
+              value={getCodeForLanguage(selectedLanguage.toLowerCase())}
+              options={{
+                readOnly: false,
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 h-full">
+            <pre
+              className={`border border-black ${
+                error ? "border-red-500 text-red-500" : ""
+              } p-2 h-full overflow-auto`}
+            >
+              {error ? error : output}
+            </pre>
+          </div>
         </div>
       </div>
     </div>

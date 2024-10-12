@@ -9,7 +9,7 @@ const languages = ["Java", "Python", "JavaScript"];
 
 const CodeEditorPlayground = () => {
   const [output, setOutput] = useState(
-    "Write your code above and click the run button."
+    "Write your code and click the run button."
   );
   const [selectedLanguage, setSelectedLanguage] = useState("java");
   const [sourceCode, setSourceCode] = useState("");
@@ -60,7 +60,7 @@ const CodeEditorPlayground = () => {
           <select
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
-            className="p-2 border rounded"
+            className="p-2 border border-gray-400 rounded"
           >
             {languages.map((lang) => (
               <option key={lang} value={lang}>
@@ -68,9 +68,16 @@ const CodeEditorPlayground = () => {
               </option>
             ))}
           </select>
+          <button
+            onClick={handleExecute}
+            disabled={isRunning}
+            className="bg-white w-28 px-3 py-2 rounded border border-gray-400 flex items-center justify-center"
+          >
+            {isRunning ? <div>Running...</div> : <div>Run Code</div>}
+          </button>
         </div>
         <div className="flex flex-col md:flex-row gap-4 w-full h-full">
-          <div className="w-full md:w-1/2 h-full relative">
+          <div className="w-full md:w-1/2 h-full">
             <Editor
               theme="vs-dark"
               height="100%"
@@ -82,13 +89,6 @@ const CodeEditorPlayground = () => {
                 selectOnLineNumbers: true,
               }}
             />
-            <button
-              onClick={handleExecute}
-              disabled={isRunning}
-              className="absolute bottom-4 right-4 bg-white p-3 rounded-full flex items-center justify-center"
-            >
-              {isRunning ? <FaPause /> : <FaPlay />}
-            </button>
           </div>
 
           <div className="w-full md:w-1/2 h-full">
