@@ -97,7 +97,7 @@ const Profile = () => {
 
         {tab === "saved" && <Saved />}
 
-        {tab === "settings" && <Settings />}
+        {tab === "settings" && <Settings user={user} />}
       </div>
     </div>
   );

@@ -20,10 +20,10 @@ const keyFeatures = [
     icon: "visualization-icon.svg",
   },
   {
-    title: "Benchmarking Tools",
+    title: "Comprehensive API",
     description:
-      "Compare the performance of algorithms across different languages with real-time benchmarking of time and space complexity.",
-    icon: "benchmarking-icon.svg",
+      "Access algorithms programmatically via our API, allowing you to fetch algorithm implementations and run them with custom inputs.",
+    icon: "api-icon.svg",
   },
 ];
 
