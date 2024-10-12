@@ -7,11 +7,9 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Technologies Used](#technologies-used)
-- [Folder Structure](#folder-structure)
 - [API Documentation](#api-documentation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
