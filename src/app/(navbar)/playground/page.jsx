@@ -60,7 +60,7 @@ const CodeEditorPlayground = () => {
           <select
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value)}
-            className="p-2 border border-gray-400 rounded"
+            className="p-2 border border-gray-400 rounded outline-none bg-white"
           >
             {languages.map((lang) => (
               <option key={lang} value={lang}>
@@ -77,7 +77,7 @@ const CodeEditorPlayground = () => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row gap-4 w-full h-full">
-          <div className="w-full md:w-1/2 h-full">
+          <div className="w-full md:w-1/2 h-full bg-white">
             <Editor
               theme="vs-dark"
               height="100%"
