@@ -8,6 +8,7 @@ import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { CiPlay1 } from "react-icons/ci";
 import { languages } from "@/app/languages";
 import algorithms from "@/data/algorithms";
+import toast, { Toaster } from "react-hot-toast";
 
 const Page = ({ params }) => {
   const [tab, setTab] = useState("c++");
@@ -50,15 +51,19 @@ const Page = ({ params }) => {
 
   const copyCode = (code) => {
     navigator.clipboard.writeText(code);
-    alert("Code copied to clipboard!");
+    toast.success("Code copied to clipboard!");
   };
 
   const handleLike = () => {
     setLike(!like);
+    toast("Saved!", {
+      icon: "❤️",
+    });
   };
 
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-24 flex flex-col gap-8">
+      <Toaster position="top-center" reverseOrder={true} />
       <div>
         <h1 className="text-3xl font-semibold">{data.name}</h1>
         <p className="text-lg mt-4">{algorithm?.description}</p>
