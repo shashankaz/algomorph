@@ -12,7 +12,7 @@ const Logout = () => {
   };
 
   return (
-    <div className="flex md:hidden flex-col gap-4 border border-gray-900 bg-gray-900 text-white p-4 rounded-xl">
+    <div className="flex items-center justify-center md:hidden border border-gray-900 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 rounded-lg">
       <button onClick={logout}>Sign out</button>
     </div>
   );

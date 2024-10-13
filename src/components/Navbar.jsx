@@ -91,7 +91,7 @@ const Navbar = () => {
           <Link href="/">Algomorph</Link>
         </h1>
         <button onClick={handleMobileMenu}>
-          {isMenuOpen ? <RxCross1 /> : <RxHamburgerMenu />}
+          {isMenuOpen ? <RxCross1 size={18} /> : <RxHamburgerMenu size={18} />}
         </button>
       </div>
 
@@ -124,12 +124,15 @@ const Navbar = () => {
               <>
                 <li className="py-2">
                   <Link href="/sign-in">
-                    <button>Sign in</button>
+                    <button onClick={handleMobileMenuClose}>Sign in</button>
                   </Link>
                 </li>
                 <li className="py-2">
                   <Link href="/sign-up">
-                    <button className="bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white px-4 py-1 rounded-lg">
+                    <button
+                      onClick={handleMobileMenuClose}
+                      className="bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white px-4 py-1 rounded-lg"
+                    >
                       Get started
                     </button>
                   </Link>

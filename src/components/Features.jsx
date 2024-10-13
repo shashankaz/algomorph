@@ -30,12 +30,12 @@ const keyFeatures = [
 const Features = () => {
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10">
-      <div className="flex flex-col gap-4 sm:gap-8 md:gap-16 bg-gradient-to-b from-gray-200 to-gray-100 rounded-xl p-4 sm:p-8 md:p-16">
+      <div className="flex flex-col gap-8 md:gap-16 bg-gradient-to-b from-gray-200 to-gray-100 rounded-xl p-4 sm:p-8 md:p-16">
         <h1 className="text-3xl sm:text-4xl font-semibold text-center">
           Key Features
         </h1>
-        <div className="flex flex-col sm:flex-row justify-between">
-          <ul className="w-full sm:w-1/2">
+        <div className="flex flex-col md:flex-row justify-between">
+          <ul className="w-full md:w-1/2">
             {keyFeatures.map((feature, index) => (
               <li key={index} className="flex flex-col gap-3 mb-4">
                 <h2 className="font-semibold text-lg sm:text-xl">
