@@ -41,12 +41,12 @@ const ApiEndpoints = () => {
           </ul>
 
           <h3 className="text-lg font-medium mt-4">Example Request:</h3>
-          <pre className="bg-gray-200 p-4 rounded-md text-sm ">
+          <pre className="bg-gray-200 p-4 rounded-md text-sm overflow-x-auto">
             {`GET /api/algorithms/quick-sort/java`}
           </pre>
 
           <h3 className="text-lg font-medium">Example Response:</h3>
-          <pre className="bg-gray-200 p-4 rounded-md text-sm ">
+          <pre className="bg-gray-200 p-4 rounded-md text-sm overflow-x-auto">
             {`{
   "algorithm": "quick-sort",
   "description": "Quick Sort is an efficient, divide-and-conquer algorithm that sorts { /* Description here */ }",
@@ -89,7 +89,7 @@ const ApiEndpoints = () => {
           </ul>
 
           <h3 className="text-lg font-medium mt-4">Example Request:</h3>
-          <pre className="bg-gray-200 p-4 rounded-md text-sm ">
+          <pre className="bg-gray-200 p-4 rounded-md text-sm overflow-x-auto">
             {`POST /api/algorithms/quick-sort/java/run
 
 {
@@ -98,7 +98,7 @@ const ApiEndpoints = () => {
           </pre>
 
           <h3 className="text-lg font-medium">Example Response:</h3>
-          <pre className="bg-gray-200 p-4 rounded-md text-sm ">
+          <pre className="bg-gray-200 p-4 rounded-md text-sm overflow-x-auto">
             {`{
   "algorithm": "quick-sort",
   "language": "java",
