@@ -10,6 +10,7 @@ import { Logs } from "./Logs";
 import { Saved } from "./Saved";
 import { Settings } from "./Settings";
 import Logout from "./Logout";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
@@ -61,47 +62,49 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-10">
-      <Sidebar tab={tab} setTab={setTab} />
-      <div className="w-full flex flex-col gap-4">
-        {tab === "profile" && (
-          <>
-            <div className="flex justify-between items-center border border-black p-4 rounded-xl">
-              <div className="flex items-center gap-4">
-                <div className="h-16 w-16 rounded-full">
-                  <Image
-                    src="/user.png"
-                    alt="avatar"
-                    height={1000}
-                    width={1000}
-                    draggable="false"
-                  />
-                </div>
-                <div className="flex flex-col justify-evenly">
-                  <p className="text-lg font-medium">{`${firstName} ${lastName}`}</p>
-                  <p className="capitalize text-gray-700">
-                    {user?.labels.length == 0 ? "User" : user?.labels[0]}
-                  </p>
+    <ProtectedRoute>
+      <div className="flex flex-col md:flex-row gap-4 px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-10">
+        <Sidebar tab={tab} setTab={setTab} />
+        <div className="w-full flex flex-col gap-4">
+          {tab === "profile" && (
+            <>
+              <div className="flex justify-between items-center border border-black p-4 rounded-xl">
+                <div className="flex items-center gap-4">
+                  <div className="h-16 w-16 rounded-full">
+                    <Image
+                      src="/user.png"
+                      alt="avatar"
+                      height={1000}
+                      width={1000}
+                      draggable="false"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-evenly">
+                    <p className="text-lg font-medium">{`${firstName} ${lastName}`}</p>
+                    <p className="capitalize text-gray-700">
+                      {user?.labels.length == 0 ? "User" : user?.labels[0]}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <ProfileInformation
-              firstName={firstName}
-              lastName={lastName}
-              email={email}
-              phone={phone}
-            />
-            <Address address={address} user={user} />
-            <Logs log={log} />
-            <Logout />
-          </>
-        )}
+              <ProfileInformation
+                firstName={firstName}
+                lastName={lastName}
+                email={email}
+                phone={phone}
+              />
+              <Address address={address} user={user} />
+              <Logs log={log} />
+              <Logout />
+            </>
+          )}
 
-        {tab === "saved" && <Saved />}
+          {tab === "saved" && <Saved />}
 
-        {tab === "settings" && <Settings user={user} />}
+          {tab === "settings" && <Settings user={user} />}
+        </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 };
 

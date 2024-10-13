@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { account } from "@/app/appwrite";
 import Loading from "./Loading";
 
-const ProtectedRoute = ({ children }) => {
+const RedirectRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -15,13 +15,13 @@ const ProtectedRoute = ({ children }) => {
       if (typeof window === "undefined") return;
       try {
         const user = await account.get();
-        if (!user) {
-          router.push("/sign-in");
+        if (user) {
+          router.push("/");
         } else {
           setLoading(false);
         }
       } catch (error) {
-        router.push("/sign-in");
+        router.push("/");
       }
     };
     checkSession();
@@ -32,4 +32,4 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default RedirectRoute;
