@@ -9,6 +9,7 @@ import { Address } from "./Address";
 import { Logs } from "./Logs";
 import { Saved } from "./Saved";
 import { Settings } from "./Settings";
+import Logout from "./Logout";
 
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
@@ -92,6 +93,7 @@ const Profile = () => {
             />
             <Address address={address} user={user} />
             <Logs log={log} />
+            <Logout />
           </>
         )}
 

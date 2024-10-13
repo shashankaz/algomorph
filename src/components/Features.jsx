@@ -46,7 +46,7 @@ const Features = () => {
             ))}
           </ul>
           <div className="w-full sm:w-1/2 grid place-content-center mt-4 sm:mt-0 pl-0 sm:pl-8 md:pl-16">
-            <div className="h-64 sm:h-80 w-full sm:w-80">
+            <div className="h-64 sm:h-80 w-full sm:w-80 hidden md:block">
               <Image
                 src="/features.png"
                 width={500}

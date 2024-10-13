@@ -85,7 +85,7 @@ const Playground = ({ params }) => {
       <h2 className="text-4xl font-semibold mb-4 capitalize">
         {type.split("-").join(" ")}
       </h2>
-      <div className="flex flex-col pb-12 h-full">
+      <div className="flex flex-col md:pb-12 h-full">
         <div className="flex gap-2 items-center mb-4">
           <label className="font-medium">Select Language:</label>
           <select

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { account } from "@/app/appwrite";
 
 const Navbar = () => {
@@ -33,6 +33,14 @@ const Navbar = () => {
     } catch (err) {
       console.error(err.message);
     }
+  };
+
+  const handleMobileMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleMobileMenuClose = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -78,38 +86,33 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile Navbar */}
       <div className="flex md:hidden items-center justify-between h-12">
-        <h1 className="lowercase">
+        <h1 className="lowercase" onClick={handleMobileMenuClose}>
           <Link href="/">Algomorph</Link>
         </h1>
-        <button onClick={() => setIsMenuOpen((prev) => !prev)}>
-          <RxHamburgerMenu />
+        <button onClick={handleMobileMenu}>
+          {isMenuOpen ? <RxCross1 /> : <RxHamburgerMenu />}
         </button>
       </div>
 
-      {/* Dropdown Menu */}
       {isMenuOpen && (
-        <div className="flex flex-col bg-white text-gray-700 border-t border-gray-300 absolute w-full z-10">
+        <div className="flex flex-col bg-white text-gray-700 border-t border-gray-300 absolute left-0 w-full z-10">
           <ul className="flex flex-col p-4">
-            <li className="py-2">
+            <li className="py-2" onClick={handleMobileMenuClose}>
               <Link href="/algorithms">Algorithms</Link>
             </li>
-            <li className="py-2">
+            <li className="py-2" onClick={handleMobileMenuClose}>
               <Link href="/playground">Playground</Link>
             </li>
-            <li className="py-2">
-              <Link href="/api">API Docs</Link>
+            <li className="py-2" onClick={handleMobileMenuClose}>
+              <Link href="/api-docs">API Docs</Link>
             </li>
-            <li className="py-2">
+            <li className="py-2" onClick={handleMobileMenuClose}>
               <Link href="/community">Community</Link>
             </li>
             {user ? (
               <>
-                <li className="py-2">
-                  <button onClick={logout}>Sign out</button>
-                </li>
-                <li className="py-2">
+                <li className="py-2" onClick={handleMobileMenuClose}>
                   <Link href="/profile">
                     <button className="bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white px-4 py-1 rounded-lg">
                       Profile
