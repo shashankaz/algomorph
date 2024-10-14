@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { account } from "@/app/appwrite";
 import toast, { Toaster } from "react-hot-toast";
 
-export const Settings = ({ user }) => {
+export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -115,6 +115,32 @@ export const Settings = ({ user }) => {
           </div>
         </div>
       )}
+
+      <div className="flex flex-col gap-4 mt-4">
+        <div className="flex flex-col gap-2">
+          <h2 className="font-medium">Update Avatar</h2>
+          <input
+            type="file"
+            name="img"
+            id="img"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor="img"
+            className="cursor-pointer border border-gray-300 rounded-md flex justify-center p-2 w-fit mt-1 font-semibold text-gray-500"
+          >
+            {img ? img.name : "Select Image"}
+          </label>
+          <button
+            onClick={handleImgUpload}
+            className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-40 rounded-lg"
+            disabled={!img}
+          >
+            Upload Image
+          </button>
+        </div>
+      </div>
 
       <div className="flex flex-col gap-4 mt-4">
         <div className="flex flex-col gap-2">

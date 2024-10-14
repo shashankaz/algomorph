@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { account, locale } from "@/app/appwrite";
+import { account, locale, storage, ID, databases } from "@/app/appwrite";
 import { Sidebar } from "./Sidebar";
 import { ProfileInformation } from "./ProfileInformation";
 import { Address } from "./Address";
@@ -18,6 +18,7 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState(null);
+  const [img, setImg] = useState(null);
   const [log, setLog] = useState(null);
   const [user, setUser] = useState(null);
   const [tab, setTab] = useState("profile");
@@ -56,10 +57,64 @@ const Profile = () => {
       }
     };
 
+    const fetchAvatar = async () => {
+      try {
+        const data = await databases.listDocuments(
+          process.env.NEXT_PUBLIC_DATABASE_ID,
+          process.env.NEXT_PUBLIC_COLLECTION_ID_2
+        );
+
+        const user = await account.get();
+
+        const image = data.documents.find((doc) => doc.userId === user?.$id);
+
+        // setImg(
+        //   `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/preview`
+        // );
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
     fetchUserDetails();
     fetchDetails();
     fetchLogs();
+    fetchAvatar();
   }, []);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImg(selectedFile);
+    }
+  };
+
+  const handleImgUpload = async () => {
+    if (!img) {
+      console.error("No file selected");
+      return;
+    }
+
+    try {
+      const image = await storage.createFile(
+        process.env.NEXT_PUBLIC_BUCKET_ID,
+        ID.unique(),
+        img
+      );
+
+      await databases.createDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_2,
+        ID.unique(),
+        {
+          imgId: image.$id,
+          userId: user.$id,
+        }
+      );
+    } catch (err) {
+      console.error("Error uploading image:", err.message);
+    }
+  };
 
   return (
     <ProtectedRoute>
@@ -101,7 +156,14 @@ const Profile = () => {
 
           {tab === "saved" && <Saved />}
 
-          {tab === "settings" && <Settings user={user} />}
+          {tab === "settings" && (
+            <Settings
+              user={user}
+              handleFileChange={handleFileChange}
+              handleImgUpload={handleImgUpload}
+              img={img}
+            />
+          )}
         </div>
       </div>
     </ProtectedRoute>
