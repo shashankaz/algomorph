@@ -12,6 +12,7 @@ const Discussions = ({ params }) => {
   const [session, setSession] = useState(null);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const Discussions = ({ params }) => {
   }, [params.id]);
 
   const fetchDiscussion = async () => {
+    setLoading(true);
     try {
       const res = await fetch(`/api/discussion/${params.id}`);
       if (!res.ok) throw new Error("Failed to fetch discussion");
@@ -28,10 +30,13 @@ const Discussions = ({ params }) => {
       setData(result.data);
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const fetchComments = async () => {
+    setLoading(true);
     try {
       const res = await fetch(`/api/comment/${params.id}`);
       if (!res.ok) throw new Error("Failed to fetch comments");
@@ -42,6 +47,8 @@ const Discussions = ({ params }) => {
       setComments(filteredComments);
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -127,20 +134,28 @@ const Discussions = ({ params }) => {
   return (
     <ProtectedRoute>
       <div className="px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-10">
-        <DiscussionHeader
-          data={data}
-          session={session}
-          onVote={handleVote}
-          onDelete={handleDelete}
-        />
-        <CommentSection
-          comments={comments}
-          comment={comment}
-          setComment={setComment}
-          onCommentSubmit={handleComment}
-          onDeleteComment={handleDeleteComment}
-          session={session}
-        />
+        {loading ? (
+          <div className="flex justify-center items-center mt-20">
+            <h1 className="text-xl">Loading discussion...</h1>
+          </div>
+        ) : (
+          <>
+            <DiscussionHeader
+              data={data}
+              session={session}
+              onVote={handleVote}
+              onDelete={handleDelete}
+            />
+            <CommentSection
+              comments={comments}
+              comment={comment}
+              setComment={setComment}
+              onCommentSubmit={handleComment}
+              onDeleteComment={handleDeleteComment}
+              session={session}
+            />
+          </>
+        )}
       </div>
     </ProtectedRoute>
   );

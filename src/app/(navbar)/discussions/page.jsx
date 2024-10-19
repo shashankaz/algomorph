@@ -14,6 +14,7 @@ const Discussions = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [discussions, setDiscussions] = useState([]);
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDiscussions = async () => {
@@ -23,6 +24,8 @@ const Discussions = () => {
         setDiscussions(data?.data.reverse() || []);
       } catch (error) {
         console.error(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -53,7 +56,11 @@ const Discussions = () => {
           </button>
         </div>
         <div className="flex flex-col gap-4 py-10">
-          {discussions.length > 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center mt-20">
+              <h1 className="text-xl">Loading discussions...</h1>
+            </div>
+          ) : discussions.length > 0 ? (
             discussions.map((discussion) => (
               <Link key={discussion.id} href={`/discussions/${discussion.id}`}>
                 <div className="flex gap-3 items-center p-3 cursor-pointer border border-black rounded-lg">
