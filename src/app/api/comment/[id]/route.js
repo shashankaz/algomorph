@@ -55,6 +55,10 @@ export const DELETE = async (request, { params }) => {
       where: { id: params.id },
     });
 
+    if (!deletedDiscussion) {
+      return NextResponse.json({ error: "Comment not found" }, { status: 404 });
+    }
+
     return NextResponse.json(
       { message: "Discussion deleted successfully", data: deletedDiscussion },
       { status: 200 }
