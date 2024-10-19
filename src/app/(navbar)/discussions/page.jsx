@@ -79,10 +79,7 @@ const Discussions = () => {
                     </div>
                     <div className="flex gap-2 items-center text-sm justify-start md:justify-end md:w-36">
                       <FaRegComment />
-                      <span>
-                        {discussion.postCount} Comment
-                        {discussion.postCount !== 1 ? "s" : ""}
-                      </span>
+                      <span>{discussion.postCount} Comment</span>
                     </div>
                   </div>
                 </div>

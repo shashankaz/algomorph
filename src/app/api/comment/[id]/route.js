@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = global.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
 
 export const GET = async (request) => {
   try {
@@ -27,6 +29,17 @@ export const POST = async (request) => {
   const { userId, name, title, body, discussionId } = await request.json();
 
   try {
+    const discussion = await prisma.discussion.findUnique({
+      where: { id: discussionId },
+    });
+
+    if (!discussion) {
+      return NextResponse.json(
+        { error: "Discussion not found" },
+        { status: 404 }
+      );
+    }
+
     const comment = await prisma.comment.create({
       data: {
         userId,
@@ -49,24 +62,26 @@ export const POST = async (request) => {
   }
 };
 
-// export const DELETE = async (request, { params }) => {
-//   try {
-//     const deletedDiscussion = await prisma.comment.delete({
-//       where: { id: params.id },
-//     });
+export const DELETE = async (request, { params }) => {
+  const { id } = params;
 
-//     if (!deletedDiscussion) {
-//       return NextResponse.json({ error: "Comment not found" }, { status: 404 });
-//     }
+  try {
+    const deletedComment = await prisma.comment.delete({
+      where: { id },
+    });
 
-//     return NextResponse.json(
-//       { message: "Discussion deleted successfully", data: deletedDiscussion },
-//       { status: 200 }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       { error: "Internal Server Error" },
-//       { status: 500 }
-//     );
-//   }
-// };
+    if (!deletedComment) {
+      return NextResponse.json({ error: "Comment not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: "Comment deleted successfully", data: deletedComment },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+};

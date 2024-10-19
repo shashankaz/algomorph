@@ -32,7 +32,7 @@ const CommentSection = ({
       <Comment
         key={comment.id}
         comment={comment}
-        // onDelete={onDeleteComment}
+        onDelete={onDeleteComment}
         session={session}
       />
     ))}

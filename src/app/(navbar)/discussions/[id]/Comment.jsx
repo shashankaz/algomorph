@@ -23,11 +23,11 @@ const Comment = ({ comment, onDelete, session }) => (
           </p>
         </div>
       </div>
-      {/* {session?.$id === comment.userId && (
+      {session?.$id === comment.userId && (
         <button onClick={() => onDelete(comment.id)}>
           <MdDelete />
         </button>
-      )} */}
+      )}
     </div>
     <p className="mt-4">{comment.body}</p>
   </div>
