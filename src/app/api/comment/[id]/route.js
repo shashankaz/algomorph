@@ -49,24 +49,24 @@ export const POST = async (request) => {
   }
 };
 
-export const DELETE = async (request, { params }) => {
-  try {
-    const deletedDiscussion = await prisma.comment.delete({
-      where: { id: params.id },
-    });
+// export const DELETE = async (request, { params }) => {
+//   try {
+//     const deletedDiscussion = await prisma.comment.delete({
+//       where: { id: params.id },
+//     });
 
-    if (!deletedDiscussion) {
-      return NextResponse.json({ error: "Comment not found" }, { status: 404 });
-    }
+//     if (!deletedDiscussion) {
+//       return NextResponse.json({ error: "Comment not found" }, { status: 404 });
+//     }
 
-    return NextResponse.json(
-      { message: "Discussion deleted successfully", data: deletedDiscussion },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-};
+//     return NextResponse.json(
+//       { message: "Discussion deleted successfully", data: deletedDiscussion },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(
+//       { error: "Internal Server Error" },
+//       { status: 500 }
+//     );
+//   }
+// };

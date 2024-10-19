@@ -110,19 +110,19 @@ const Discussions = ({ params }) => {
     }
   };
 
-  const handleDeleteComment = async (commentId) => {
-    try {
-      const res = await fetch(`/api/comment/${commentId}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) throw new Error("Failed to delete comment");
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== commentId)
-      );
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  // const handleDeleteComment = async (commentId) => {
+  //   try {
+  //     const res = await fetch(`/api/comment/${commentId}`, {
+  //       method: "DELETE",
+  //     });
+  //     if (!res.ok) throw new Error("Failed to delete comment");
+  //     setComments((prevComments) =>
+  //       prevComments.filter((comment) => comment.id !== commentId)
+  //     );
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
 
   return (
     <ProtectedRoute>
@@ -138,7 +138,7 @@ const Discussions = ({ params }) => {
           comment={comment}
           setComment={setComment}
           onCommentSubmit={handleComment}
-          onDeleteComment={handleDeleteComment}
+          // onDeleteComment={handleDeleteComment}
           session={session}
         />
       </div>
