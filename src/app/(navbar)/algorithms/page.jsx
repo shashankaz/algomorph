@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import algorithms from "@/data/algorithms";
@@ -18,7 +19,7 @@ const Algorithms = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const itemsPerPage = 9;
 
   const filteredAlgorithms = algorithms
@@ -90,12 +91,12 @@ const Algorithms = () => {
                   <span className="text-sm text-gray-400">
                     {algorithm.category}
                   </span>
-                  <a
+                  <Link
                     href={algorithm.link}
                     className="text-sm text-blue-500 hover:underline"
                   >
                     Learn more
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
