@@ -60,7 +60,7 @@ const Navbar = () => {
             <Link href="/api-docs">API Docs</Link>
           </li>
           <li>
-            <Link href="/community">Community</Link>
+            <Link href="/discussions">Discussions</Link>
           </li>
         </ul>
         {user ? (
@@ -108,7 +108,7 @@ const Navbar = () => {
               <Link href="/api-docs">API Docs</Link>
             </li>
             <li className="py-2" onClick={handleMobileMenuClose}>
-              <Link href="/community">Community</Link>
+              <Link href="/discussions">Discussions</Link>
             </li>
             {user ? (
               <>
