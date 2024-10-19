@@ -18,25 +18,26 @@
 ## Features
 
 1. **Multi-Language Support**
-   - Users can run and test data structures and algorithms in multiple languages like C, C++, Java, Python and JavaScript.
+   - Users can run and test data structures and algorithms in multiple languages like C, C++, Java, Python, and JavaScript.
    
 2. **Interactive Code Playground**
    - Users can write, run, and modify algorithms directly in the browser using the Monaco Editor. The editor supports real-time output in multiple languages.
 
 3. **Algorithm Visualizations**
-   - Users can visualize how algorithms work with step-by-step graphical representations, which helps in understanding the internal mechanics of complex algorithms.
+   - Users can visualize how algorithms work with step-by-step graphical representations, helping them understand the internal mechanics of complex algorithms.
 
 4. **API for Developers**
-   - The platform provides a powerful API, allowing developers to programmatically access the algorithms and their implementations. The API supports multiple languages and formats.
+   - The platform provides a powerful API, allowing developers to programmatically access algorithms and their implementations. The API supports multiple languages and formats.
 
-5. **Community Contributions**
-   - Developers can contribute their own algorithms, improve existing implementations, and collaborate with a thriving community of programmers.
+5. **Discussions Tab**
+   - Users can start discussions, comment on topics, and vote (upvote/downvote) on existing discussions. This fosters collaborative learning and problem-solving.
 
 ## Installation
 
 ### Prerequisites
 - **Node.js** (>= 18.x)
-- **Appwrite** for backend services like authentication, storage, and execution of algorithms.
+- **Appwrite** for backend services like authentication and file storage.
+- **PostgreSQL** with **Prisma** for database management, and **NeonDB** for data storage related to the discussion tab.
 
 ### Clone the Repository
 ```bash
@@ -56,6 +57,21 @@ Create a `.env.local` file in the root directory with the following variables:
 NEXT_PUBLIC_PROJECT_ID=your_project_id
 NEXT_PUBLIC_DATABASE_ID=your_database_id
 NEXT_PUBLIC_COLLECTION_ID=your_collection_id
+DATABASE_URL=your_neondb_database_url
+```
+
+### Prisma Setup
+After adding your environment variables, generate the Prisma client:
+
+```bash
+npx prisma generate
+```
+
+### Run Migrations
+Run the following command to migrate your Prisma schema:
+
+```bash
+npx prisma migrate dev
 ```
 
 ### Run the Application
@@ -71,6 +87,8 @@ The application will be running on `http://localhost:3000`.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **Monaco Editor**: Code editor component for browser-based editing.
 - **Appwrite**: Backend-as-a-service used for authentication and file storage.
+- **Prisma**: ORM for interacting with the PostgreSQL database.
+- **NeonDB**: Database service for storing discussion-related data.
 - **React**: JavaScript library for building user interfaces.
 
 ## API Documentation
@@ -98,7 +116,7 @@ The platform provides a REST API that allows developers to programmatically acce
   ```json
   {
     "algorithm": "quick-sort",
-    "description": "Quick Sort is an efficient, divide-and-conquer algorithm that sorts { /* Description here */ }",
+    "description": "Quick Sort is an efficient, divide-and-conquer algorithm...",
     "language": "java",
     "code": "public class QuickSort { /* QuickSort Java code here */ }"
   }
@@ -155,6 +173,9 @@ The platform provides a REST API that allows developers to programmatically acce
 
 4. **API Integration**:
    - For developers, use the provided API to fetch algorithm implementations or run them programmatically. Check the **API Documentation** for more details.
+
+5. **Discussion Tab**:
+   - Users can start discussions, post comments, and vote (upvote/downvote) on various topics to foster collaborative learning and share insights.
 
 ## Contributing
 
