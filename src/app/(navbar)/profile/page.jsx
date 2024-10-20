@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 import { account, locale, storage, ID, databases } from "@/app/appwrite";
 import { Sidebar } from "./Sidebar";
 import { ProfileInformation } from "./ProfileInformation";
@@ -18,7 +19,7 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState(null);
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState("/user.png");
   const [log, setLog] = useState(null);
   const [user, setUser] = useState(null);
   const [tab, setTab] = useState("profile");
@@ -68,9 +69,9 @@ const Profile = () => {
 
         const image = data.documents.find((doc) => doc.userId === user?.$id);
 
-        // setImg(
-        //   `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/preview`
-        // );
+        setImg(
+          `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+        );
       } catch (err) {
         console.error(err.message);
       }
@@ -111,8 +112,11 @@ const Profile = () => {
           userId: user.$id,
         }
       );
+
+      setImg(null);
+      toast.success("Image uploaded successfully");
     } catch (err) {
-      console.error("Error uploading image:", err.message);
+      toast.error(err.message);
     }
   };
 
@@ -127,7 +131,7 @@ const Profile = () => {
                 <div className="flex items-center gap-4">
                   <div className="h-16 w-16 rounded-full">
                     <Image
-                      src="/user.png"
+                      src={img}
                       alt="avatar"
                       height={1000}
                       width={1000}

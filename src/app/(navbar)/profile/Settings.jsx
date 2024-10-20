@@ -130,7 +130,7 @@ export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
             htmlFor="img"
             className="cursor-pointer border border-gray-300 rounded-md flex justify-center p-2 w-fit mt-1 font-semibold text-gray-500"
           >
-            {img ? img.name : "Select Image"}
+            Select Image
           </label>
           <button
             onClick={handleImgUpload}
