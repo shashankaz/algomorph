@@ -9,6 +9,7 @@ datasource db {
 
 model Discussion {
   id          String     @id @default(uuid())
+  tag         Int        @default(autoincrement())
   userId      String
   name        String
   title       String

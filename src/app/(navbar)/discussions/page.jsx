@@ -96,7 +96,8 @@ const Discussions = () => {
                   <div className="flex flex-col md:flex-row md:items-center flex-1">
                     <div className="flex flex-col w-full">
                       <h1 className="font-semibold line-clamp-1">
-                        {discussion.title}
+                        {discussion.title}{" "}
+                        <span className="font-normal">#{discussion.tag}</span>
                       </h1>
                       <p className="text-sm">
                         {discussion.name} created{" "}

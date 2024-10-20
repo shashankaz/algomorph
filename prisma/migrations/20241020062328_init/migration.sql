@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Discussion" (
     "id" TEXT NOT NULL,
+    "tag" SERIAL NOT NULL,
     "userId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "title" TEXT NOT NULL,
