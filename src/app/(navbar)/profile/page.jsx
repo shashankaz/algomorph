@@ -73,13 +73,17 @@ const Profile = () => {
 
       const user = await account.get();
 
-      const image = data
+      const image = data.documents
         .reverse()
-        .documents.find((doc) => doc.userId === user?.$id);
+        .find((doc) => doc.userId === user?.$id);
 
-      setImg(
-        `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
-      );
+      if (image) {
+        setImg(
+          `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+        );
+      } else {
+        setImg("/user.png");
+      }
     } catch (err) {
       console.error(err.message);
     }
@@ -129,7 +133,6 @@ const Profile = () => {
         }
       );
 
-      setImg(null);
       toast.success("Image uploaded successfully");
       fetchAvatar();
     } catch (err) {
@@ -148,7 +151,7 @@ const Profile = () => {
                 <div className="flex items-center gap-4">
                   <div className="h-16 w-16 rounded-full">
                     <Image
-                      src={img}
+                      src={img || "/user.png"}
                       alt="avatar"
                       height={1000}
                       width={1000}
