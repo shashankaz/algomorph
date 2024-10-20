@@ -28,7 +28,7 @@ model Comment {
   title        String
   body         String
   discussionId String
-  discussion   Discussion @relation(fields: [discussionId], references: [id])
+  discussion   Discussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
