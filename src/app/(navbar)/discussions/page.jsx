@@ -6,7 +6,7 @@ import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
-import { account } from "@/app/appwrite";
+import { account, databases } from "@/app/appwrite";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Model from "./Model";
 
@@ -21,7 +21,27 @@ const Discussions = () => {
       try {
         const res = await fetch("/api/discussion");
         const data = await res.json();
-        setDiscussions(data?.data.reverse() || []);
+        const fetchedDiscussions = data?.data.reverse() || [];
+
+        const images = await databases.listDocuments(
+          process.env.NEXT_PUBLIC_DATABASE_ID,
+          process.env.NEXT_PUBLIC_COLLECTION_ID_2
+        );
+
+        const updatedDiscussions = fetchedDiscussions.map((discussion) => {
+          const image = images.documents
+            .reverse()
+            .find((doc) => doc.userId === discussion.userId);
+
+          return {
+            ...discussion,
+            img: image
+              ? `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+              : "/user.png",
+          };
+        });
+
+        setDiscussions(updatedDiscussions);
       } catch (error) {
         console.error(error.message);
       } finally {
@@ -66,7 +86,7 @@ const Discussions = () => {
                 <div className="flex gap-3 items-center p-3 cursor-pointer border border-black rounded-lg">
                   <div className="h-12 w-12 rounded-full">
                     <Image
-                      src="/user.png"
+                      src={discussion.img}
                       alt="avatar"
                       height={1000}
                       width={1000}

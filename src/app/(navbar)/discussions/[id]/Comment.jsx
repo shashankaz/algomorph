@@ -7,7 +7,7 @@ const Comment = ({ comment, onDelete, session }) => (
     <div className="flex justify-between items-center">
       <div className="flex gap-4 items-center">
         <Image
-          src="/user.png"
+          src={comment.img}
           alt="avatar"
           height={56}
           width={56}

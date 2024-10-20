@@ -3,11 +3,11 @@ import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import VoteButton from "./VoteButton";
 
-const DiscussionHeader = ({ data, session, onVote, onDelete }) => (
+const DiscussionHeader = ({ data, img, session, onVote, onDelete }) => (
   <div className="p-4 rounded-lg border border-black flex flex-col gap-4">
     <div className="flex gap-4 items-center">
       <Image
-        src="/user.png"
+        src={img}
         alt="avatar"
         height={56}
         width={56}

@@ -2,17 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { account } from "@/app/appwrite";
+import { account, databases } from "@/app/appwrite";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import DiscussionHeader from "./DiscussionHeader";
 import CommentSection from "./CommentSection";
 
 const Discussions = ({ params }) => {
   const [data, setData] = useState(null);
+  const [img, setImg] = useState("");
   const [session, setSession] = useState(null);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingDiscussion, setLoadingDiscussion] = useState(true);
+  const [loadingComments, setLoadingComments] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -22,21 +24,37 @@ const Discussions = ({ params }) => {
   }, [params.id]);
 
   const fetchDiscussion = async () => {
-    setLoading(true);
+    setLoadingDiscussion(true);
     try {
       const res = await fetch(`/api/discussion/${params.id}`);
       if (!res.ok) throw new Error("Failed to fetch discussion");
       const result = await res.json();
       setData(result.data);
+
+      const data = await databases.listDocuments(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_2
+      );
+
+      const image = data.documents
+        .reverse()
+        .find((doc) => doc.userId === result.data.userId);
+
+      if (image) {
+        const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`;
+        setImg(imageUrl);
+      } else {
+        setImg("/user.png");
+      }
     } catch (error) {
       console.error(error.message);
     } finally {
-      setLoading(false);
+      setLoadingDiscussion(false);
     }
   };
 
   const fetchComments = async () => {
-    setLoading(true);
+    setLoadingComments(true);
     try {
       const res = await fetch(`/api/comment/${params.id}`);
       if (!res.ok) throw new Error("Failed to fetch comments");
@@ -44,11 +62,29 @@ const Discussions = ({ params }) => {
       const filteredComments = result.data
         .filter((comment) => comment.discussionId === params.id)
         .reverse();
-      setComments(filteredComments);
+
+      const images = await databases.listDocuments(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_2
+      );
+
+      const updatedComments = filteredComments.map((comment) => {
+        const image = images.documents
+          .reverse()
+          .find((doc) => doc.userId === comment.userId);
+
+        return {
+          ...comment,
+          img: image
+            ? `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+            : "/user.png",
+        };
+      });
+      setComments(updatedComments);
     } catch (error) {
       console.error(error.message);
     } finally {
-      setLoading(false);
+      setLoadingComments(false);
     }
   };
 
@@ -134,7 +170,7 @@ const Discussions = ({ params }) => {
   return (
     <ProtectedRoute>
       <div className="px-4 sm:px-8 md:px-16 lg:px-32 pt-24 pb-10">
-        {loading ? (
+        {loadingDiscussion ? (
           <div className="flex justify-center items-center mt-20">
             <h1 className="text-xl">Loading discussion...</h1>
           </div>
@@ -142,18 +178,25 @@ const Discussions = ({ params }) => {
           <>
             <DiscussionHeader
               data={data}
+              img={img}
               session={session}
               onVote={handleVote}
               onDelete={handleDelete}
             />
-            <CommentSection
-              comments={comments}
-              comment={comment}
-              setComment={setComment}
-              onCommentSubmit={handleComment}
-              onDeleteComment={handleDeleteComment}
-              session={session}
-            />
+            {loadingComments ? (
+              <div className="flex justify-center items-center mt-10">
+                <h1 className="text-lg">Loading comments...</h1>
+              </div>
+            ) : (
+              <CommentSection
+                comments={comments}
+                comment={comment}
+                setComment={setComment}
+                onCommentSubmit={handleComment}
+                onDeleteComment={handleDeleteComment}
+                session={session}
+              />
+            )}
           </>
         )}
       </div>
