@@ -25,67 +25,83 @@ const Profile = () => {
   const [tab, setTab] = useState("profile");
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const user = await account.get();
-        if (user) {
-          setFirstName(user.name.split(" ")[0]);
-          setLastName(user.name.split(" ")[1] || "");
-          setEmail(user.email);
-          setPhone(user.phone);
-          setUser(user);
-        }
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-
-    const fetchDetails = async () => {
-      try {
-        const data = await locale.get();
-        setAddress(data);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-
-    const fetchLogs = async () => {
-      try {
-        const data = await account.listLogs();
-        setLog(data.logs);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-
-    const fetchAvatar = async () => {
-      try {
-        const data = await databases.listDocuments(
-          process.env.NEXT_PUBLIC_DATABASE_ID,
-          process.env.NEXT_PUBLIC_COLLECTION_ID_2
-        );
-
-        const user = await account.get();
-
-        const image = data.documents.find((doc) => doc.userId === user?.$id);
-
-        setImg(
-          `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
-        );
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-
     fetchUserDetails();
     fetchDetails();
     fetchLogs();
     fetchAvatar();
   }, []);
 
+  const fetchUserDetails = async () => {
+    try {
+      const user = await account.get();
+      if (user) {
+        setFirstName(user.name.split(" ")[0]);
+        setLastName(user.name.split(" ")[1] || "");
+        setEmail(user.email);
+        setPhone(user.phone);
+        setUser(user);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const fetchDetails = async () => {
+    try {
+      const data = await locale.get();
+      setAddress(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const fetchLogs = async () => {
+    try {
+      const data = await account.listLogs();
+      setLog(data.logs);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const fetchAvatar = async () => {
+    try {
+      const data = await databases.listDocuments(
+        process.env.NEXT_PUBLIC_DATABASE_ID,
+        process.env.NEXT_PUBLIC_COLLECTION_ID_2
+      );
+
+      const user = await account.get();
+
+      const image = data
+        .reverse()
+        .documents.find((doc) => doc.userId === user?.$id);
+
+      setImg(
+        `https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${image.imgId}/view?project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const max_file_size = 2 * 1024 * 1024;
+  const accepted_image_types = ["image/jpeg", "image/png", "image/gif"];
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+
     if (selectedFile) {
+      if (!accepted_image_types.includes(selectedFile.type)) {
+        toast.error("Please upload a valid image (JPEG, PNG, GIF).");
+        return;
+      }
+
+      if (selectedFile.size > max_file_size) {
+        toast.error("File size exceeds 2MB. Please choose a smaller file.");
+        return;
+      }
+
       setImg(selectedFile);
     }
   };
@@ -115,6 +131,7 @@ const Profile = () => {
 
       setImg(null);
       toast.success("Image uploaded successfully");
+      fetchAvatar();
     } catch (err) {
       toast.error(err.message);
     }
