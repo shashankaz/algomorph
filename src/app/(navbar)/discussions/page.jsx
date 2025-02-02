@@ -66,7 +66,7 @@ const Discussions = () => {
     <ProtectedRoute>
       <div className="h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-20">
         <div className="flex justify-between items-center">
-          <h2 className="text-4xl font-semibold mb-4">Discussions</h2>
+          <h2 className="text-4xl font-semibold mb-4 font-cinzel">Discussions</h2>
           <button
             onClick={() => setIsOpen(true)}
             className="flex gap-2 items-center border border-black hover:bg-black hover:text-white transition duration-200 px-3 h-10 rounded-lg text-sm"

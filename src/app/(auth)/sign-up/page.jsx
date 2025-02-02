@@ -49,7 +49,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md p-6">
-        <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+        <h1 className="text-3xl font-bold text-center font-cinzel">Sign Up</h1>
         <p className="text-sm font-light text-center mt-3">
           Already have an account?{" "}
           <Link href={"/sign-in"} className="font-medium text-blue-600">

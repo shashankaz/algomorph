@@ -65,7 +65,7 @@ const Page = ({ params }) => {
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-24 flex flex-col gap-8">
       <Toaster position="top-center" reverseOrder={true} />
       <div>
-        <h1 className="text-3xl font-semibold">{data.name}</h1>
+        <h1 className="text-3xl font-semibold font-cinzel">{data.name}</h1>
         <p className="text-lg mt-4">{algorithm?.description}</p>
       </div>
       <div>
@@ -121,7 +121,7 @@ const Page = ({ params }) => {
       </div>
 
       <div>
-        <h1 className="text-2xl font-semibold">Time and Space Complexity</h1>
+        <h1 className="text-2xl font-semibold font-cinzel">Time and Space Complexity</h1>
         <ul className="mt-4 list-inside list-disc">
           <li>
             <span className="font-semibold">Best Case Time Complexity:</span>{" "}

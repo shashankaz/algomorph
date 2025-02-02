@@ -46,7 +46,7 @@ const Navbar = () => {
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 font-medium fixed top-0 w-full backdrop-blur-lg z-10">
       <div className="hidden md:flex justify-between items-center h-16 border-b">
-        <h1 className="w-48 lowercase">
+        <h1 className="w-48 lowercase font-kalam text-3xl">
           <Link href="/">Algomorph</Link>
         </h1>
         <ul className="flex gap-4">
@@ -87,7 +87,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex md:hidden items-center justify-between h-12">
-        <h1 className="lowercase" onClick={handleMobileMenuClose}>
+        <h1 className="text-xl lowercase font-kalam" onClick={handleMobileMenuClose}>
           <Link href="/">Algomorph</Link>
         </h1>
         <button onClick={handleMobileMenu}>

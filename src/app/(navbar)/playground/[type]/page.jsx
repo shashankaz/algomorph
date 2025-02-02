@@ -84,7 +84,7 @@ const Playground = ({ params }) => {
   return (
     <ProtectedRoute>
       <div className="h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-20">
-        <h2 className="text-4xl font-semibold mb-4 capitalize">
+        <h2 className="text-4xl font-semibold mb-4 capitalize font-cinzel">
           {type.split("-").join(" ")}
         </h2>
         <div className="flex flex-col md:pb-12 h-full">

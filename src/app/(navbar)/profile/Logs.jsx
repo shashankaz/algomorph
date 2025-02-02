@@ -14,26 +14,34 @@ export const Logs = ({ log }) => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-900">
-          {log?.slice(0, 5).map((logs, index) => (
-            <tr key={index}>
-              <td className="px-3 py-3 text-sm text-gray-700 capitalize">
-                {logs.clientName} - {logs.clientType} - {logs.clientVersion}
-              </td>
-              <td className="px-3 py-3 text-sm text-gray-700">
-                {logs.countryName}
-              </td>
-              <td className="px-3 py-3 text-sm text-gray-700 capitalize">
-                {logs.deviceName}
-              </td>
-              <td className="px-3 py-3 text-sm text-gray-700">{logs.ip}</td>
-              <td className="px-3 py-3 text-sm text-gray-700">
-                {logs.osName} - {logs.osVersion}
-              </td>
-              <td className="px-4 py-2 text-sm text-gray-700">
-                {new Date(logs.time).toLocaleString()}
+          {log.length > 0 ? (
+            log?.slice(0, 5).map((logs, index) => (
+              <tr key={index}>
+                <td className="px-3 py-3 text-sm text-gray-700 capitalize">
+                  {logs.clientName} - {logs.clientType} - {logs.clientVersion}
+                </td>
+                <td className="px-3 py-3 text-sm text-gray-700">
+                  {logs.countryName}
+                </td>
+                <td className="px-3 py-3 text-sm text-gray-700 capitalize">
+                  {logs.deviceName}
+                </td>
+                <td className="px-3 py-3 text-sm text-gray-700">{logs.ip}</td>
+                <td className="px-3 py-3 text-sm text-gray-700">
+                  {logs.osName} - {logs.osVersion}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-700">
+                  {new Date(logs.time).toLocaleString()}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="text-center pt-3 text-sm">
+                No logs found
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

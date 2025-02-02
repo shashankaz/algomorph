@@ -36,7 +36,7 @@ const SignIn = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md p-6">
-        <h1 className="text-3xl font-bold text-center">Sign In</h1>
+        <h1 className="text-3xl font-bold text-center font-cinzel">Sign In</h1>
         <p className="text-sm font-light text-center mt-3">
           Don&apos;t have an account?{" "}
           <Link href={"/sign-up"} className="font-medium text-blue-600">

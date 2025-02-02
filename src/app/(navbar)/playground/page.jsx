@@ -54,7 +54,7 @@ const CodeEditorPlayground = () => {
   return (
     <ProtectedRoute>
       <div className="h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-20">
-        <h2 className="text-4xl font-semibold mb-4">Playground</h2>
+        <h2 className="text-4xl font-semibold mb-4 font-cinzel">Playground</h2>
         <div className="flex flex-col md:pb-12 h-full">
           <div className="flex gap-2 items-center mb-4">
             <label className="font-medium">Select Language:</label>

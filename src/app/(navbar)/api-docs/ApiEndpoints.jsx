@@ -1,11 +1,11 @@
 const ApiEndpoints = () => {
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-6">API Endpoints</h1>
+      <h1 className="text-3xl font-semibold mb-6 font-cinzel">API Endpoints</h1>
 
       <div className="flex flex-col gap-10">
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold font-cinzel">
             1. Explore Algorithm Implementations (GET)
           </h2>
 
@@ -67,7 +67,7 @@ const ApiEndpoints = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold font-cinzel">
             2. Perform Algorithm Execution (POST) (Coming Soon)
           </h2>
           <p>

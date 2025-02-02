@@ -1,11 +1,11 @@
 const ApiIntroduction = () => {
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-6">API Documentation</h1>
+      <h1 className="text-3xl font-semibold mb-6 font-cinzel">API Documentation</h1>
 
       <div className="flex flex-col gap-10">
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold font-cinzel">
             Welcome to the Algomorph API
           </h2>
           <p>
@@ -24,7 +24,7 @@ const ApiIntroduction = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">Key Features</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">Key Features</h2>
           <ul className="list-disc list-inside space-y-3">
             <li>
               <strong>Access a Wide Range of Algorithms:</strong> Retrieve
@@ -49,7 +49,7 @@ const ApiIntroduction = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">Who is this API for?</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">Who is this API for?</h2>
           <p>
             Whether you&apos;re a developer integrating algorithms into your
             application or a student learning data structures the Algomorph API
@@ -68,7 +68,7 @@ const ApiIntroduction = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">How It Works</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">How It Works</h2>
           <p>
             The API is designed to be simple and intuitive. You can perform the
             following actions:
@@ -86,7 +86,7 @@ const ApiIntroduction = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold ">Base URL</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">Base URL</h2>
           <div className="bg-gray-200 p-4 rounded-md">
             <code className="block text-sm">
               Base URL: http://localhost:3000/api/algorithms

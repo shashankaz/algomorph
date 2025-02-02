@@ -39,7 +39,7 @@ const Model = ({ setIsOpen, name, userId }) => {
     <div className="py-5 h-[calc(100vh-4rem)] absolute top-16 w-full backdrop-blur-lg">
       <div className="flex flex-col px-4 sm:px-8 md:px-16 lg:px-32">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold mb-3">Start a Discussion</h1>
+          <h1 className="text-3xl font-semibold mb-3 font-cinzel">Start a Discussion</h1>
           <button
             onClick={() => {
               setIsOpen(false);

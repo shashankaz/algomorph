@@ -31,7 +31,7 @@ const Features = () => {
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10">
       <div className="flex flex-col gap-8 md:gap-16 bg-gradient-to-b from-gray-200 to-gray-100 rounded-xl p-4 sm:p-8 md:p-16">
-        <h1 className="text-3xl sm:text-4xl font-semibold text-center">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-center font-cinzel">
           Key Features
         </h1>
         <div className="flex flex-col md:flex-row justify-between">

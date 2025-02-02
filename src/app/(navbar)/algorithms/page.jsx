@@ -40,7 +40,9 @@ const Algorithms = () => {
   return (
     <div className="flex flex-col relative min-h-screen">
       <div className="absolute top-1/3 w-full">
-        <h1 className="text-4xl font-semibold text-center">Algorithms</h1>
+        <h1 className="text-4xl font-semibold text-center font-cinzel">
+          Algorithms
+        </h1>
         <div className="flex justify-center items-center mt-10 mx-4 max-w-2xl md:mx-auto bg-white shadow-md rounded-3xl">
           <div className="px-4">
             <CiSearch />
@@ -80,7 +82,7 @@ const Algorithms = () => {
               key={algorithm.id}
               className="flex flex-col gap-2 bg-white h-44 p-4 rounded-xl shadow-md"
             >
-              <h2 className="text-lg pb-1 font-semibold line-clamp-1">
+              <h2 className="text-lg pb-1 font-semibold line-clamp-1 font-cinzel">
                 {algorithm.name}
               </h2>
               <div className="flex flex-col justify-between h-full">
@@ -107,7 +109,7 @@ const Algorithms = () => {
           {Array.from({ length: totalPages }).map((_, index) => (
             <button
               key={index}
-              className={`py-1 px-3 border border-black rounded-full ${
+              className={`py-1 px-3 border border-black rounded-full font-cinzel ${
                 currentPage === index + 1 ? "bg-gray-800 text-white" : ""
               }`}
               onClick={() => setCurrentPage(index + 1)}

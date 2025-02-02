@@ -31,7 +31,7 @@ const Footer = () => {
   return (
     <div className="flex flex-col px-4 sm:px-8 md:px-16 lg:px-32 py-10 text-gray-700">
       <div className="flex flex-col sm:flex-row justify-between py-10">
-        <h1 className="font-semibold lowercase mb-8 sm:mb-0 text-lg">
+        <h1 className="lowercase mb-8 sm:mb-0 text-3xl font-kalam">
           <Link href={"/"}>Algomorph</Link>
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 text-sm">

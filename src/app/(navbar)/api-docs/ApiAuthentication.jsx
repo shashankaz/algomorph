@@ -1,11 +1,11 @@
 const ApiAuthentication = () => {
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-6">API Authentication</h1>
+      <h1 className="text-3xl font-semibold mb-6 font-cinzel">API Authentication</h1>
 
       <div className="flex flex-col gap-10">
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">No Authentication Required</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">No Authentication Required</h2>
           <p>
             Our Algomorph API is designed to be easily accessible to all users
             without the need for authentication. This means you can start using
@@ -21,7 +21,7 @@ const ApiAuthentication = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold font-cinzel">
             Benefits of No Authentication
           </h2>
           <ul className="list-disc list-inside space-y-3 ">
@@ -44,7 +44,7 @@ const ApiAuthentication = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold">Usage Limitations</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">Usage Limitations</h2>
           <p>
             While the API does not require authentication, it&apos;s important
             to understand that there may be certain rate limits to ensure fair
@@ -57,7 +57,7 @@ const ApiAuthentication = () => {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-2xl font-semibold ">Security Considerations</h2>
+          <h2 className="text-2xl font-semibold font-cinzel">Security Considerations</h2>
           <p>
             Although the API does not require authentication, we encourage users
             to implement security best practices in their applications when

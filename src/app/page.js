@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import PopularAlgo from "@/components/PopularAlgo";
 import Features from "@/components/Features";
+import ComingSoon from "@/components/ComingSoon";
 import Footer from "@/components/Footer";
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
       <Hero />
       <PopularAlgo />
       <Features />
+      <ComingSoon />
       <Footer />
     </div>
   );

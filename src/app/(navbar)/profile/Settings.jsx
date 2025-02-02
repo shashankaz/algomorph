@@ -82,7 +82,7 @@ export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
             />
             <button
               onClick={handlePasswordUpdate}
-              className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-40 rounded-lg"
+              className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-48 rounded-lg"
             >
               Update Password
             </button>
@@ -108,7 +108,7 @@ export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
             />
             <button
               onClick={handleSetPassword}
-              className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-40 rounded-lg"
+              className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-48 rounded-lg"
             >
               Set Password
             </button>
@@ -134,7 +134,7 @@ export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
           </label>
           <button
             onClick={handleImgUpload}
-            className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-40 rounded-lg"
+            className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-48 rounded-lg"
             disabled={!img}
           >
             Upload Image
@@ -161,7 +161,7 @@ export const Settings = ({ user, handleFileChange, handleImgUpload, img }) => {
           />
           <button
             onClick={handlePhoneUpdate}
-            className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-40 rounded-lg"
+            className="mt-2 bg-gradient-to-b from-gray-700 hover:from-gray-600 to-gray-900 hover:to-gray-900 text-white py-2 px-4 w-full md:w-48 rounded-lg"
           >
             Update Phone
           </button>
