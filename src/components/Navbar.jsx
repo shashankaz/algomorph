@@ -44,8 +44,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="px-4 sm:px-8 md:px-16 lg:px-32 font-medium fixed top-0 w-full backdrop-blur-lg z-10">
-      <div className="hidden md:flex justify-between items-center h-16 border-b">
+    <div className="px-4 sm:px-8 md:px-16 lg:px-32 font-medium fixed top-0 w-full backdrop-blur-lg bg-white/35 z-10">
+      <div className="hidden md:flex justify-between items-center h-16">
         <h1 className="w-48 lowercase font-kalam text-3xl">
           <Link href="/">Algomorph</Link>
         </h1>
