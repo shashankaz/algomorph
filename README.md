@@ -6,6 +6,8 @@
 
 **Algomorph** is a web-based platform that allows users to explore popular data structures and algorithms in multiple programming languages. Built with Next.js and powered by Appwrite, it offers an interactive environment to learn, test, and visualize algorithms. The platform includes implementations in C, C++, Java, Python, and JavaScript, making it an invaluable resource for both students and professionals.
 
+![alt text](image.png)
+
 ## Features
 
 1. **Multi-Language Support**
